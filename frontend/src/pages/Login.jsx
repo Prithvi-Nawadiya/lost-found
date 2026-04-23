@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ Email: '', Password: '' });
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://expense-tracker-a8kj.onrender.com/api/login', formData);
+      const res = await axios.post('https://lostfound-backend-3198.onrender.com/api/auth/login', formData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');
@@ -37,11 +37,11 @@ const Login = () => {
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-4">
                 <Form.Label className="form-label">Email Address</Form.Label>
-                <Form.Control type="email" name="Email" placeholder="name@example.com" required onChange={handleChange} />
+                <Form.Control type="email" name="email" placeholder="name@example.com" required onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-4">
                 <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control type="password" name="Password" placeholder="••••••••" required onChange={handleChange} />
+                <Form.Control type="password" name="password" placeholder="••••••••" required onChange={handleChange} />
               </Form.Group>
               <Button variant="primary" type="submit" className="w-100 py-2 mt-2">
                 Sign In
