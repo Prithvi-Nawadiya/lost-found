@@ -8,7 +8,14 @@ const itemRoutes = require('./routes/items');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://lostfound-frontend-yxbp.onrender.com'
+  ],
+  credentials: true
+}));
+app.options('*', cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
