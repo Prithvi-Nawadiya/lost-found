@@ -15,7 +15,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/register', formData);
+      await axios.post('https://expense-tracker-a8kj.onrender.com/api/register', formData);
       navigate('/login');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
@@ -23,31 +23,34 @@ const Register = () => {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-6">
-        <Card>
+    <div className="row justify-content-center auth-container">
+      <div className="col-md-5">
+        <div className="text-center mb-4">
+          <h2 style={{fontWeight: 700, color: '#1a202c'}}>Create Account</h2>
+          <p className="text-muted">Join us to report or find lost items easily</p>
+        </div>
+        <Card className="p-2 border-0">
           <Card.Body>
-            <h2 className="text-center mb-4">Register</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
+            {error && <Alert variant="danger" className="border-0 rounded-3">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="text" name="Name" required onChange={handleChange} />
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label">Full Name</Form.Label>
+                <Form.Control type="text" name="Name" placeholder="John Doe" required onChange={handleChange} />
               </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" name="Email" required onChange={handleChange} />
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label">Email Address</Form.Label>
+                <Form.Control type="email" name="Email" placeholder="name@example.com" required onChange={handleChange} />
               </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name="Password" required onChange={handleChange} />
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label">Password</Form.Label>
+                <Form.Control type="password" name="Password" placeholder="••••••••" required onChange={handleChange} />
               </Form.Group>
-              <Button variant="primary" type="submit" className="w-100">
-                Register
+              <Button variant="primary" type="submit" className="w-100 py-2 mt-2">
+                Create Account
               </Button>
             </Form>
-            <div className="text-center mt-3">
-              Already have an account? <Link to="/login">Login</Link>
+            <div className="text-center mt-4 text-muted">
+              Already have an account? <Link to="/login" className="text-decoration-none" style={{color: '#4361ee', fontWeight: 500}}>Sign In</Link>
             </div>
           </Card.Body>
         </Card>

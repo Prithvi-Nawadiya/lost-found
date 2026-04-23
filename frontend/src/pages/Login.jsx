@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/login', formData);
+      const res = await axios.post('https://expense-tracker-a8kj.onrender.com/api/login', formData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');
@@ -25,27 +25,30 @@ const Login = () => {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-6">
-        <Card>
+    <div className="row justify-content-center auth-container">
+      <div className="col-md-5">
+        <div className="text-center mb-4">
+          <h2 style={{fontWeight: 700, color: '#1a202c'}}>Welcome Back</h2>
+          <p className="text-muted">Login to manage your lost & found items</p>
+        </div>
+        <Card className="p-2 border-0">
           <Card.Body>
-            <h2 className="text-center mb-4">Login</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
+            {error && <Alert variant="danger" className="border-0 rounded-3">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" name="Email" required onChange={handleChange} />
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label">Email Address</Form.Label>
+                <Form.Control type="email" name="Email" placeholder="name@example.com" required onChange={handleChange} />
               </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" name="Password" required onChange={handleChange} />
+              <Form.Group className="mb-4">
+                <Form.Label className="form-label">Password</Form.Label>
+                <Form.Control type="password" name="Password" placeholder="••••••••" required onChange={handleChange} />
               </Form.Group>
-              <Button variant="primary" type="submit" className="w-100">
-                Login
+              <Button variant="primary" type="submit" className="w-100 py-2 mt-2">
+                Sign In
               </Button>
             </Form>
-            <div className="text-center mt-3">
-              Don't have an account? <Link to="/register">Register</Link>
+            <div className="text-center mt-4 text-muted">
+              Don't have an account? <Link to="/register" className="text-decoration-none" style={{color: '#4361ee', fontWeight: 500}}>Register now</Link>
             </div>
           </Card.Body>
         </Card>
