@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get('https://expense-tracker-a8kj.onrender.com/api/items');
+      const res = await axios.get('https://lostfound-backend-3198.onrender.com/api/items');
       setItems(res.data);
     } catch (error) {
       console.error(error);
@@ -26,7 +26,7 @@ const Dashboard = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get(`https://expense-tracker-a8kj.onrender.com/api/items/search?name=${search.name}&category=${search.category}`);
+      const res = await axios.get(`https://lostfound-backend-3198.onrender.com/api/items/search?name=${search.name}&category=${search.category}`);
       setItems(res.data);
     } catch (error) {
       console.error(error);
@@ -46,9 +46,9 @@ const Dashboard = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       if (editItem) {
-        await axios.put(`https://expense-tracker-a8kj.onrender.com/api/items/${editItem._id}`, formData, config);
+        await axios.put(`https://lostfound-backend-3198.onrender.com/api/items/${editItem._id}`, formData, config);
       } else {
-        await axios.post('https://expense-tracker-a8kj.onrender.com/api/items', formData, config);
+        await axios.post('https://lostfound-backend-3198.onrender.com/api/items', formData, config);
       }
       setShowModal(false);
       setEditItem(null);
@@ -63,7 +63,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this item?')) {
       try {
-        await axios.delete(`https://expense-tracker-a8kj.onrender.com/api/items/${id}`, {
+        await axios.delete(`https://lostfound-backend-3198.onrender.com/api/items/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchItems();
