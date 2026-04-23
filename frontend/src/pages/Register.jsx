@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ Name: '', Email: '', Password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -35,15 +35,15 @@ const Register = () => {
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-4">
                 <Form.Label className="form-label">Full Name</Form.Label>
-                <Form.Control type="text" name="name" placeholder="John Doe" required onChange={handleChange} />
+                <Form.Control type="text" name="Name" placeholder="John Doe" required onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-4">
                 <Form.Label className="form-label">Email Address</Form.Label>
-                <Form.Control type="email" name="email" placeholder="name@example.com" required onChange={handleChange} />
+                <Form.Control type="email" name="Email" placeholder="name@example.com" required onChange={handleChange} />
               </Form.Group>
               <Form.Group className="mb-4">
                 <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control type="password" name="password" placeholder="••••••••" required onChange={handleChange} />
+                <Form.Control type="password" name="Password" placeholder="••••••••" required onChange={handleChange} />
               </Form.Group>
               <Button variant="primary" type="submit" className="w-100 py-2 mt-2">
                 Create Account
